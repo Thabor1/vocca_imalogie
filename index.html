@@ -106,11 +106,11 @@
   .pill-row{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:34px}
   .pill{font-size:13.5px;font-weight:500;color:var(--ink-2);background:var(--paper);border:1px solid var(--line);border-radius:999px;padding:9px 15px;display:inline-flex;align-items:center;gap:8px}
   .pill::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--teal)}
-  .frise{position:relative;margin:20px 0 8px;padding:48px 0 14px}
-  .frise-line{position:absolute;left:4%;right:4%;top:64px;height:3px;background:var(--wire);border-radius:3px}
+  .frise{position:relative;margin:20px 0 8px;padding:40px 0 14px}
+  .frise-line{position:absolute;left:4%;right:4%;top:48px;height:4px;background:var(--wire);border-radius:4px;z-index:1}
   .frise-steps{display:grid;grid-template-columns:repeat(5,1fr);position:relative;z-index:2}
   .step{text-align:center;padding:0 8px}
-  .step .node{width:18px;height:18px;border-radius:50%;background:var(--paper);border:3px solid var(--blue);margin:0 auto 26px;box-shadow:0 0 0 6px rgba(11,107,143,.10)}
+  .step .node{width:20px;height:20px;border-radius:50%;background:var(--paper);border:3px solid var(--blue);margin:0 auto 28px;box-shadow:0 0 0 6px rgba(11,107,143,.10)}
   .step:first-child .node{border-color:var(--teal);box-shadow:0 0 0 6px rgba(3,135,140,.10)}
   .step:last-child .node{border-color:var(--gold);box-shadow:0 0 0 6px rgba(222,182,130,.18)}
   .step .vol{font-family:"IBM Plex Mono";font-size:12px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);margin-bottom:8px}
@@ -229,8 +229,8 @@
     <div class="stat-row" data-reveal>
       <div class="stat"><div class="n">7<span class="u">centres</span></div><div class="l">une solution unique, déploiement progressif</div></div>
       <div class="stat"><div class="n">22<span class="u">/ 33 salles</span></div><div class="l">salles ETP retenues sur les 33 salles du groupe</div></div>
-      <div class="stat"><div class="n">250<span class="u">€ HT</span></div><div class="l">dès la 1ʳᵉ salle, soit −16,7&nbsp;% vs tarif public &amp; VIDI</div></div>
-      <div class="stat"><div class="n">−26,7<span class="u">%</span></div><div class="l">au tarif cible de 220&nbsp;€ HT, à l'échelle du groupe</div></div>
+      <div class="stat"><div class="n">220<span class="u">€ HT</span></div><div class="l">tarif cible par salle / mois, à l'échelle du groupe complet</div></div>
+      <div class="stat"><div class="n">−26,7<span class="u">%</span></div><div class="l">vs tarif public &amp; réseau VIDI (300&nbsp;€ HT / salle / mois)</div></div>
     </div>
   </div>
 </header>
@@ -286,7 +286,6 @@
       <span class="pill">Appels entrants &amp; sortants illimités</span>
       <span class="pill">SMS &amp; WhatsApp inclus</span>
       <span class="pill">Plateforme &amp; dashboard inclus</span>
-      <span class="pill">Aucun frais caché</span>
     </div>
 
     <div class="frise" data-reveal>
