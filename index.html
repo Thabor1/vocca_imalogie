@@ -91,6 +91,32 @@
   .callout b{color:var(--ink)}
   .callout.teal{border-left-color:var(--teal);background:rgba(3,135,140,.07)}
 
+  /* ---------- MODULE ROI (obligatoire pour tout prospect) ---------- */
+  .roi-grid{display:grid;grid-template-columns:1.1fr 1fr;gap:20px}
+  @media(max-width:820px){.roi-grid{grid-template-columns:1fr}}
+  .roi-card{background:var(--paper);border:1px solid var(--line);border-radius:18px;padding:30px;box-shadow:var(--shadow)}
+  .roi-card .k{font-family:"IBM Plex Mono";font-size:12px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--blue);margin-bottom:14px}
+  .roi-card h3{font-size:21px;margin-bottom:10px}
+  .roi-card p{color:var(--muted);font-size:15.5px;margin:0}
+  .roi-card .big{font-family:"Bricolage Grotesque";font-weight:700;font-size:34px;letter-spacing:-.03em;line-height:1;margin-bottom:6px}
+  .roi-card .big .big-u{font-size:16px;color:var(--muted);font-weight:600}
+  .roi-tool{margin-top:20px;padding-top:18px;border-top:1px dashed var(--line)}
+  .roi-label{font-size:13.5px;color:var(--muted);display:flex;justify-content:space-between;align-items:baseline;gap:10px;margin-bottom:12px}
+  .roi-label b{font-family:"Bricolage Grotesque";font-weight:700;font-size:20px;color:var(--ink);letter-spacing:-.02em}
+  .roi-label-2{margin-top:18px}
+  .roi-range{-webkit-appearance:none;appearance:none;width:100%;height:6px;border-radius:6px;background:linear-gradient(90deg,var(--teal),var(--blue));outline:none;cursor:pointer}
+  .roi-range::-webkit-slider-thumb{-webkit-appearance:none;appearance:none;width:22px;height:22px;border-radius:50%;background:var(--paper);border:3px solid var(--blue);box-shadow:0 2px 8px rgba(5,46,76,.20);cursor:pointer;transition:transform .12s}
+  .roi-range::-webkit-slider-thumb:active{transform:scale(1.12)}
+  .roi-range::-moz-range-thumb{width:22px;height:22px;border-radius:50%;background:var(--paper);border:3px solid var(--blue);box-shadow:0 2px 8px rgba(5,46,76,.20);cursor:pointer}
+  .roi-out{margin-top:16px;background:var(--ink);color:#E7F0F6;border-radius:12px;padding:14px 16px;display:flex;justify-content:space-between;align-items:center;gap:10px}
+  .roi-out span{font-size:13px;color:#9CB4C4}
+  .roi-out b{font-family:"Bricolage Grotesque";font-weight:700;font-size:20px;letter-spacing:-.02em;background:var(--wire);-webkit-background-clip:text;background-clip:text;color:transparent;white-space:nowrap}
+  .roi-month{margin-top:9px;font-size:12.5px;color:var(--muted);text-align:right}
+  .roi-month span{font-weight:600;color:var(--ink-2)}
+
+  .roi-be{margin-top:14px;padding:14px 16px;border:1px dashed var(--gold);border-radius:12px;background:rgba(222,182,130,.08);font-size:13.5px;line-height:1.55;color:var(--ink-2)}
+  .roi-be b{color:var(--ink)}
+  .roi-be .ok{color:var(--green);font-weight:600}
   /* ---------- TARIF EXCLUSIF ---------- */
   .exclu{margin-top:28px;position:relative;background:var(--paper);border:1px solid var(--gold);border-radius:18px;padding:32px 34px;box-shadow:var(--shadow);overflow:hidden}
   .exclu::before{content:"";position:absolute;left:0;right:0;top:0;height:4px;background:var(--wire)}
@@ -274,8 +300,49 @@
   </div>
 </section>
 
-<!-- TARIFICATION -->
+
+<!-- ROI / RENDEZ-VOUS NON HONORES -->
 <section class="alt">
+  <div class="wrap">
+    <div class="section-head" data-reveal>
+      <div class="eyebrow">Rendez-vous non honorés</div>
+      <h2>Chez vous, chaque rendez-vous non honoré est un examen perdu — définitivement.</h2>
+      <p>Vos plannings sont pleins&nbsp;: trois semaines d'attente en échographie comme en mammographie. Un créneau non honoré n'est donc pas un manque à gagner théorique&nbsp;: c'est un examen qui aurait été reprogrammé et honoré à coup sûr. La confirmation multicanale Vocca (WhatsApp, SMS, puis appel) réduit les no-shows de <b>40 à 70&nbsp;%</b> chez nos clients, et l'annulation automatique des rendez-vous non confirmés libère le créneau à temps pour un patient en liste d'attente.</p>
+    </div>
+    <div class="roi-grid">
+      <div class="roi-card" data-reveal>
+        <div class="k">Le paradoxe des plannings pleins</div>
+        <div class="big">3 semaines</div>
+        <h3>d'attente en écho &amp; mammo</h3>
+        <p>Plus vos vacations sont remplies, plus chaque rendez-vous non honoré coûte cher&nbsp;: libéré à temps, le créneau aurait été reprogrammé et honoré à coup sûr par un patient en liste d'attente. C'est le levier de rentabilité le plus direct de Vocca chez Imalogie.</p>
+      </div>
+      <div class="roi-card" data-reveal>
+        <div class="k">Estimez votre manque à gagner — à l'échelle du groupe</div>
+        <div class="big"><span id="roiNo">14</span><span class="big-u"> / jour</span></div>
+        <h3>rendez-vous non honorés</h3>
+        <div class="roi-tool">
+          <div class="roi-label">Rendez-vous non honorés / jour <b id="roiNoVal">14</b> <span style="font-weight:400;color:var(--muted)">(soit <span id="roiPerSite">2</span> par centre)</span></div>
+          <input id="roiNoRange" class="roi-range" type="range" min="5" max="60" step="1" value="14" aria-label="Nombre de rendez-vous non honorés par jour">
+          <div class="roi-label roi-label-2">Montant moyen d'un examen <b id="roiAmt">70&nbsp;€</b></div>
+          <input id="roiRange" class="roi-range" type="range" min="40" max="400" step="10" value="70" aria-label="Montant moyen d'un examen en euros">
+          <div class="roi-out">
+            <span>Manque à gagner estimé</span>
+            <b id="roiDay">980&nbsp;€ / jour</b>
+          </div>
+          <div class="roi-month">soit ~<span id="roiMonth">19&nbsp;600&nbsp;€</span> / mois (20 jours ouvrés)</div>
+          <div class="roi-be">Si Vocca n'évite ne serait-ce que <b>25&nbsp;%</b> de ces rendez-vous non honorés&nbsp;: <b id="roiRecov">4&nbsp;900&nbsp;€</b> récupérés / mois — pour un coût Vocca de <b>4&nbsp;840&nbsp;€ HT / mois</b> à l'échelle des 22 salles du groupe. <span id="roiVerdict" class="ok">La solution s'autofinance sur ce seul levier.</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="callout" data-reveal>
+      <b>Et ce calcul ne couvre que le premier levier.</b> Il ne tient compte ni des rendez-vous supplémentaires captés grâce aux 100&nbsp;% d'appels décrochés, ni de la charge téléphonique retirée à vos équipes en place — recentrées sur l'accueil des patients sur site et les tâches à forte valeur ajoutée — ni de la réduction progressive, jusqu'à sa suppression, du recours au télésecrétariat externe, dont le coût actuel est loin d'être neutre.
+    </div>
+  </div>
+</section>
+
+<!-- TARIFICATION -->
+<section>
   <div class="wrap">
     <div class="section-head" data-reveal>
       <div class="eyebrow">Tarification</div>
@@ -459,6 +526,52 @@
     },{threshold:.12,rootMargin:'0px 0px -8% 0px'});
     els.forEach(function(e){io.observe(e)});
   })();
+  // Calculateur ROI no-show (module obligatoire)
+  (function(){
+    var noRange = document.getElementById('roiNoRange');
+    var amtRange = document.getElementById('roiRange');
+    if(!noRange || !amtRange) return;
+    var WORK_DAYS = 20;
+    var roiNo = document.getElementById('roiNo');
+    var roiNoVal = document.getElementById('roiNoVal');
+    var amt = document.getElementById('roiAmt');
+    var day = document.getElementById('roiDay');
+    var month = document.getElementById('roiMonth');
+    function fmt(n){ return n.toLocaleString('fr-FR').replace(/\u202f/g,'\u00a0'); }
+    var VOCCA_MONTH = 4840; // coût mensuel HT du groupe complet au tarif cible (22 salles x 220 €)
+    var recov = document.getElementById('roiRecov');
+    var verdict = document.getElementById('roiVerdict');
+    function update(){
+      var nb = parseInt(noRange.value, 10);
+      var v = parseInt(amtRange.value, 10);
+      roiNo.textContent = nb;
+      roiNoVal.textContent = nb;
+      var perSiteEl = document.getElementById('roiPerSite');
+      if(perSiteEl){
+        var SITES = 7;
+        var ps = nb / SITES;
+        perSiteEl.textContent = (ps % 1 === 0) ? ps : ps.toFixed(1).replace('.', ',');
+      }
+      amt.innerHTML = fmt(v) + '\u00a0€';
+      day.innerHTML = fmt(nb * v) + '\u00a0€ / jour';
+      month.innerHTML = fmt(nb * v * WORK_DAYS) + '\u00a0€';
+      if(recov && verdict){
+        var r = Math.round(nb * v * WORK_DAYS * 0.25);
+        recov.innerHTML = fmt(r) + '\u00a0€';
+        if(r >= VOCCA_MONTH){
+          verdict.textContent = 'La solution s\u2019autofinance sur ce seul levier.';
+          verdict.className = 'ok';
+        } else {
+          verdict.textContent = 'Soit d\u00e9j\u00e0 ' + Math.round(100 * r / VOCCA_MONTH) + '\u00a0% de l\u2019abonnement groupe couvert par ce seul levier.';
+          verdict.className = '';
+        }
+      }
+    }
+    noRange.addEventListener('input', update);
+    amtRange.addEventListener('input', update);
+    update();
+  })();
+
 </script>
 </body>
 </html>
